@@ -9,7 +9,7 @@ struct coord{
 
 struct EnsCoord {
   //?
-}
+};
 
 // On recopie les fonctions du td
 coord creerCoord(int x, int y){
