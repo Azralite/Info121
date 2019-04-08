@@ -42,8 +42,13 @@ void creeEC(EnsCoord &EC){
   EC.taille = 0; 
 }
 
-coord randomEC()
+coord randomEC() //Utile ?
   
+void ajouteEC(EnsCoord EC, coord c){
+    EC.t[EC.taille] = c;
+    EC.taille++;
+}
+
 EnsCoord trouverVoisins(coord a){
   EnsCoord EC = creeEC(EC);
   int x = getX(a);
