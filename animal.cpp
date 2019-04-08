@@ -28,6 +28,7 @@ animal creerAnimal(espece e, coord c){
     res.nour = -1;
     //Faut voir a combien on met la bouffe des lapins et du vide
     //Sinon on doit se demerder pour que il n'y ait que les renards qui aient un compteur de bouffe
+    //tu peut laisser comme ça je pense ou mettre 0, de toute façon on n'utilisera pas ce champ chez le lapin
   }
   return res;
 }
