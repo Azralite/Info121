@@ -71,6 +71,9 @@ EnsCoord trouverVoisin(coord c){
   xmin = max(getX(c)-1,0);
   xmax = min(getX(c)+1,size-1);
   // On doit mettre size comme var global avec la taille du tableau
+  //si pour size tu parle de la taille du tableau 20*20 du projet, tu est pas censé la connaitre ici je crois
+  //c'est pour sa que j'avais fait une fonction qui peut renvoyé des valeurs inférieur à 0 ou supérieur à 20
+  //parce qu'ensyite dans grille.cpp je traite les données envoyé par cette fonction et supprime les valeurs incorrect
   ymin = max(getY(c)-1,0);
   ymax = min(getY(c)+1,size-1);
   for (int i = 0; i < xmax; i++) {
