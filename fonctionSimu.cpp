@@ -27,6 +27,7 @@ void verifieGrille(const grille &g){
 			}
 }
 
+/*Non Fonctionnel actuellement en attente des fonctions portant sur EnsCoord*/
 EnsCoord voisinsVides(const coord &c, const grille &g){
 	EnsCoord EC = trouverVoisins(c);
 	EnsCoord Res;
