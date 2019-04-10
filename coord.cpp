@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 
-
+//test
 
 struct coord{
   int x;
