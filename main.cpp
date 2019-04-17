@@ -1,7 +1,13 @@
-#include <iostream>
-#include <cstdlib>
+#include "fonctionSimu.hpp"
 
 
-using namespace std;
-
-//test
+/*
+declarer 2 lignes
+utiliser grille vide ou initialise grille (1)
+boucle while
+  afficher grille
+  deplacer tous lapins de l'ancienne grille a la nouvelle
+idem renards
+ancienne <- nouvelle
+nouvelle <- vide
+*/
