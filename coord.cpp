@@ -73,7 +73,9 @@ coord randomEC(EnsCoord c){
   return c.tab[ran];
 }
 
-
+int tailleEC(EnsCoord a){
+  return a.taille;
+}
 
 EnsCoord trouverVoisin(coord c){
   int xmin, xmax, ymin, ymax;
