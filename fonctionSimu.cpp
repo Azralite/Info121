@@ -20,7 +20,7 @@ void initialiseGrille(const grille &g){
 
 void verifieGrille(const grille &g){
 	for(int i = 0; i < gridSize; i++)
-		for(int n = 0; n < gridSize; n++){
+		for(int n = 0; n < gridSize; n++)
 			if( not egalCoord( coordAnimal(g[i][n]), creerCoord(i,n) ) ){
 				cout << "Erreur dans la grille à la position " << i << ":" << n << endl;
 				exit(1);
@@ -34,6 +34,16 @@ EnsCoord voisinsVides(const coord &c, const grille &g){
 	creeEC(Res);
 	for(int i = 0; i < EC.taille; i++)
 		if(estVide(g[i][n]))
+			ajouteEC(Res, coordAnimal(g[i][n]));
+	return Res;
+}
+
+EnsCoord voisinsEspece(const grille &g, coord c, espece e){
+	EnsCoord EC = trouverVoisins(c);
+	EnsCoord Res;
+	Res = creeEC();
+	for(int i = 0; i < EC.taille; i++)
+		if(g[i][n])
 			ajouteEC(Res, coordAnimal(g[i][n]));
 	return Res;
 }
