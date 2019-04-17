@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 
-
+const int TAILLE = 20;
 
 struct coord{
   int x;
@@ -12,7 +12,6 @@ struct EnsCoord {
    coord tab[TAILLE*TAILLE];
    int taille;
 };
-
 // On recopie les fonctions du td
 coord creerCoord(int x, int y);
 
@@ -27,7 +26,8 @@ int max (int a, int b);
 
 int min(int a, int b);
 
-creeEC();
+EnsCoord creeEC();// J'ai pas bien compris comment fonctionne EC
+//Genre qu'est ce qu'on met dedans
 
 coord randomEC();
 

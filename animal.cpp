@@ -1,14 +1,6 @@
-#include <iostream>
-#include <cstdlib>
+#include "coord.hpp"
+#include "animal.hpp"
 
-enum espece { vide, lapin, renard };
-
-struct coord{
-  int x;
-  int y;
-};
-
-struct animal {coord c; espece b; int nour};
 
 //Variable global pour les renards
 int FoodInit = 5;
@@ -61,7 +53,7 @@ bool estVide(animal a){
   }
 }
 
-void changeCoordAnimal(cood c, animal &a){
+void changeCoordAnimal(coord c, animal &a){
   a.c = c;
 }
 
@@ -89,6 +81,27 @@ void faimRenard(animal &a){
 bool mortRenard(animal a){
   if( a.b == renard){
     if(a.nour <=0){
+      return true;
+    }
+  }
+  return false;
+}
+
+bool seReproduitAnimal(animal a, EnsCoord c){
+  float ran = rand();
+  if (a.b == lapin && c.taille >= MinFreeBirthLapin){ //On doit faire un .val avec le EC pour connaitre le nb de cases au tour vide
+    if(ran > ProbBirthLapin){
+      return false;
+    }
+    else{
+      return true;
+    }
+  }
+  else if(a.b == renard && a.nour >= FoodReprod){
+    if(ran > ProbBirthRenard){
+      return false;
+    }
+    else{
       return true;
     }
   }

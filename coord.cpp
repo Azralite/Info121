@@ -1,17 +1,4 @@
-#include <iostream>
-#include <cstdlib>
-
-const int TAILLE = 20;
-
-struct coord{
-  int x;
-  int y;
-};
-
-struct EnsCoord {
-   coord tab[TAILLE*TAILLE];
-   int taille;
-};
+#include "coord.hpp"
 
 // On recopie les fonctions du td
 coord creerCoord(int x, int y){
@@ -85,15 +72,12 @@ EnsCoord trouverVoisin(coord c){
   xmax = min(getX(c)+1,TAILLE-1);
   ymin = max(getY(c)-1,0);
   ymax = min(getY(c)+1,TAILLE-1);
-  for (int i = 0; i < xmax; i++) {
-    for (int j = 0; j < ymax; j++) {
+  for (int i = xmin; i < xmax; i++) {
+    for (int j = ymin; j < ymax; j++) {
       if(i!=getX(c) || j!=getY(c)){
         ajouteEC(e,creerCoord(i,j));
       }
     }
   }
-}
-int main() {
-  srand(time(NULL));
-  return 0;
+  return e;
 }
