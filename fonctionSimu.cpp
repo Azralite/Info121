@@ -63,7 +63,7 @@ EnsCoord voisinsEspece(const grille &g, coord c, espece e){
 	EnsCoord EC = trouverVoisins(c);
 	EnsCoord Res;
 	Res = creeEC();
-	for(int i = 0; i < EC.taille; i++)
+	for(int i = 0; i < tailleEC(EC); i++)
 		if(especeAnimal(g[i][n]) == e)
 			ajouteEC(Res, coordAnimal(g[i][n]));
 	return Res;
