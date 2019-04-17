@@ -1,6 +1,4 @@
-#include <iostream>
-#include <cstdlib>
-#include "grille.hpp"
+#include "fonctionSimu.hpp"
 
 const int gridSize = 20
 

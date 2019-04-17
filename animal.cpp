@@ -1,4 +1,3 @@
-#include "coord.hpp"
 #include "animal.hpp"
 
 
@@ -11,7 +10,6 @@ float ProbBirthRenard = 0.05;
 //Variable global pour les lapins
 float ProbBirthLapin = 0.3;
 int MinFreeBirthLapin = 4;
-
 
 animal creerAnimal(espece e, coord c){
   animal res;

@@ -1,13 +1,13 @@
-#include <iostream>
-#include <cstdlib>
+#include "animal.hpp"
 
-const int gridSize = 20
-using grille = animal [gridSize][gridSize]
+const int gridSize = 20;
 
-void grilleVide(grille &g);
+using grille = animal [gridSize][gridSize];
 
-void copieGrille(const grille &g1, grille &g2);
+void grilleVide(grille g);
 
-animal getAnimal(const grille &g, const coord &c);
+void copieGrille(const grille g1, grille g2);
 
-animal setAnimal(grille &g, const animal &p);
+animal getAnimal(const grille g, const coord &c);
+
+animal setAnimal(grille g, const animal p);

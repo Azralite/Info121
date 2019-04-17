@@ -1,5 +1,4 @@
-#include <iostream>
-#include <cstdlib>
+#include "coord.hpp"
 
 enum espece { vide, lapin, renard };
 
