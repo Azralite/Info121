@@ -17,7 +17,6 @@ coord creerCoord(int x, int y);
 
 int getX(coord a);
 
-
 int getY(coord a);
 
 bool egalCoord(coord a, coord b);
@@ -26,9 +25,12 @@ int max (int a, int b);
 
 int min(int a, int b);
 
-EnsCoord creeEC();// J'ai pas bien compris comment fonctionne EC
-//Genre qu'est ce qu'on met dedans
+EnsCoord creeEC();
+
+void ajouteEC(EnsCoord a, coord c);
 
 coord randomEC();
+
+int tailleEC(EnsCoord a);
 
 EnsCoord trouverVoisin(coord c);
