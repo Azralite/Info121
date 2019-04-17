@@ -9,7 +9,8 @@ struct coord{
 };
 
 struct EnsCoord {
-  //?
+   coord tab[TAILLE*TAILLE];
+   int taille;
 };
 
 // On recopie les fonctions du td

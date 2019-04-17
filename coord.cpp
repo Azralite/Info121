@@ -70,10 +70,6 @@ coord randomEC(EnsCoord c){
 }
 
 
-int main() {
-  srand(time(NULL));
-  return 0;
-}
 
 EnsCoord trouverVoisin(coord c){
   int xmin, xmax, ymin, ymax;
@@ -90,4 +86,9 @@ EnsCoord trouverVoisin(coord c){
       }
     }
   }
+}
+
+int main() {
+  srand(time(NULL));
+  return 0;
 }

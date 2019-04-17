@@ -22,5 +22,3 @@ void mangeAnimal(animal &a);
 void faimRenard(animal &a);
 
 bool mortRenard(animal a);
-
-bool seReproduitAnimal(animal a, EnsCoord c);
