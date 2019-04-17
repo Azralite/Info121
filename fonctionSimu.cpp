@@ -46,16 +46,7 @@ void verifieGrille(const grille &g){
 			}
 }
 
-/*Non Fonctionnel actuellement en attente des fonctions portant sur EnsCoord*/
-EnsCoord voisinsVides(const coord &c, const grille &g){
-	EnsCoord EC = trouverVoisins(c);
-	EnsCoord Res;
-	creeEC(Res);
-	for(int i = 0; i < EC.taille; i++)
-		if(estVide(g[i][n]))
-			ajouteEC(Res, coordAnimal(g[i][n]));
-	return Res;
-}
+
 
 EnsCoord voisinsEspece(const grille &g, coord c, espece e){
 	EnsCoord EC = trouverVoisins(c);
