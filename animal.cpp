@@ -3,7 +3,12 @@
 
 enum espece { vide; lapin; renard; };
 
-struct animal {coord a; espece b; int nour};
+struct coord{
+  int x;
+  int y;
+};
+
+struct animal {coord c; espece b; int nour};
 
 //Variable global pour les renards
 int FoodInit = 5;
@@ -18,26 +23,19 @@ int MinFreeBirthLapin = 4;
 
 animal creerAnimal(espece e, coord c){
   animal res;
-  c.x = getX();
-  res.a.y = c.y;
+  res.c = creerCoord(getX(c),getY(c));
   res.b = e;
   if(e == renard){
     res.nour = FoodInit;
   }
   else{
     res.nour = -1;
-    //Faut voir a combien on met la bouffe des lapins et du vide
-    //Sinon on doit se demerder pour que il n'y ait que les renards qui aient un compteur de bouffe
-    //tu peut laisser comme ça je pense ou mettre 0, de toute façon on n'utilisera pas ce champ chez le lapin
   }
   return res;
 }
 
 coord coordAnimal(animal a){
-  coord res;
-  res.x = a.a.x;
-  res.y = a.a.y;
-  return res;
+  return creerCoord(getX(a.c),getY(a.c));
 }
 
 espece especeAnimal(animal a){
@@ -64,8 +62,7 @@ bool estVide(animal a){
 }
 
 void changeCoordAnimal(cood c, animal &a){
-  a.a.x = c.x;
-  a.a.y = c.y;
+  a.c = c;
 }
 
 void mangeAnimal(animal &a){
@@ -100,7 +97,7 @@ bool mortRenard(animal a){
 
 bool seReproduitAnimal(animal a, EnsCoord c){
   float ran = rand();
-  if (a.b == lapin && c.val >= MinFreeBirthLapin){ //On doit faire un .val avec le EC pour connaitre le nb de cases au tour vide
+  if (a.b == lapin && c.taille >= MinFreeBirthLapin){ //On doit faire un .val avec le EC pour connaitre le nb de cases au tour vide
     if(ran > ProbBirthLapin){
       return false;
     }

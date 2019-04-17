@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 
-//test en fait non //test2 //test de puis pc
+const TAILLE = 20;
 
 struct coord{
   int x;
@@ -9,7 +9,8 @@ struct coord{
 };
 
 struct EnsCoord {
-  //?
+   coord tab[TAILLE*TAILLE];
+   int taille;
 };
 
 // On recopie les fonctions du td
@@ -56,11 +57,21 @@ int min(int a, int b){
    }
 }
 
-creeEC();// J'ai pas bien compris comment fonctionne EC
-//Genre qu'est ce qu'on met dedans
+EnsCoord creeEC(){
+  EnsCoord res;
+  res.taille = 0;
+  return res;
+}
 
-coord randomEC()
+
+coord randomEC(EnsCoord c){
+  int ran = rand()%c.taille - 1;
+  return c.tab[ran];
+}
+
+
 int main() {
+  srand(time(NULL));
   return 0;
 }
 
@@ -69,13 +80,13 @@ EnsCoord trouverVoisin(coord c){
   EnsCoord e;
   creeEC(e);
   xmin = max(getX(c)-1,0);
-  xmax = min(getX(c)+1,size-1);
+  xmax = min(getX(c)+1,TAILLE-1);
   // On doit mettre size comme var global avec la taille du tableau
   //si pour size tu parle de la taille du tableau 20*20 du projet, tu est pas censé la connaitre ici je crois
   //c'est pour sa que j'avais fait une fonction qui peut renvoyé des valeurs inférieur à 0 ou supérieur à 20
   //parce qu'ensyite dans grille.cpp je traite les données envoyé par cette fonction et supprime les valeurs incorrect
   ymin = max(getY(c)-1,0);
-  ymax = min(getY(c)+1,size-1);
+  ymax = min(getY(c)+1,TAILLE-1);
   for (int i = 0; i < xmax; i++) {
     for (int i = 0; i < ymax; i++) {
       if(i!=getX(c) || j!=getY(c)){
