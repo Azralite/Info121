@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 
-enum espece { vide; lapin; renard; };
+enum espece { vide, lapin, renard };
 
 struct coord{
   int x;
