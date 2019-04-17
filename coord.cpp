@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 
-const TAILLE = 20;
+const int TAILLE = 20;
 
 struct coord{
   int x;
@@ -80,20 +80,19 @@ int tailleEC(EnsCoord a){
 EnsCoord trouverVoisin(coord c){
   int xmin, xmax, ymin, ymax;
   EnsCoord e;
-  creeEC(e);
+  e = creeEC();
   xmin = max(getX(c)-1,0);
   xmax = min(getX(c)+1,TAILLE-1);
   ymin = max(getY(c)-1,0);
   ymax = min(getY(c)+1,TAILLE-1);
   for (int i = 0; i < xmax; i++) {
-    for (int i = 0; i < ymax; i++) {
+    for (int j = 0; j < ymax; j++) {
       if(i!=getX(c) || j!=getY(c)){
         ajouteEC(e,creerCoord(i,j));
       }
     }
   }
 }
-
 int main() {
   srand(time(NULL));
   return 0;
