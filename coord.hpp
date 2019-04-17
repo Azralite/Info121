@@ -27,8 +27,7 @@ int max (int a, int b);
 
 int min(int a, int b);
 
-creeEC();// J'ai pas bien compris comment fonctionne EC
-//Genre qu'est ce qu'on met dedans
+creeEC();
 
 coord randomEC();
 
