@@ -55,6 +55,7 @@ void ajouteEC(EnsCoord a, coord c){
   a.tab[a.taille] = c;
   a.taille ++;
 }
+
 coord randomEC(EnsCoord c){
   int ran = rand()%c.taille - 1;
   return c.tab[ran];
