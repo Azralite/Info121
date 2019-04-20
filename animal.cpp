@@ -67,13 +67,9 @@ void mangeAnimal(animal &a){
 void faimRenard(animal &a){
   if(a.b == renard){
     a.nour --;
-    /*
-    *if(a.nour < 0){
-        a.b = vide;
-        Je sais pas si on "tue" l'animal à ce moment
-    }
-    */
   }
+  else
+    exit(0);
 }
 
 bool mortRenard(animal a){
