@@ -63,10 +63,15 @@ EnsCoord voisinsEspece(const grille &g, coord c, espece e){
 
 ensCoord toutEspece(grille g, espece e);
 
-//doit deplaceTousLapins et deplaceTousRenards doivent utiliser toutEspece
+bool attaqueRenard(grille g, animal r);
+
+//deplaceTousLapins et deplaceTousRenards ou alors deplaceTousEspeces doivent utiliser toutEspece
+
 void deplaceTousLapins(grille g1, grille g2); //g1 = ancienne grille et g2 = nouvelle grille
 
 void deplaceTousRenards(grille g1, grille g2);
+
+void deplaceTousEspeces(grile g1, espece e, grille g2); // remplace potentiellement deplaceTousLapins et deplaceTousRenards
 
 //Upadte grille doit utiliser deplaceTousLapins et deplaceTousRenards
 void updateGrille(grille g1, grille g2);
