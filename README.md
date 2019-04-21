@@ -14,3 +14,5 @@ Laisser **deplaceTousLapins** et **deplaceTousRenards** comme dans td9 ou faire 
 * deplaceTousEspece() ou deplaceTousRenard() et deplaceTousLapins()
 * hasard()
 * afficheGrille()
+
+**Attention: Docu des fonctions à coder dans le fichier .hpp**
