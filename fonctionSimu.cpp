@@ -2,6 +2,9 @@
 
 const int gridSize = 20
 
+
+int hasard(int val);
+	
 bool seReproduitAnimal(animal a, EnsCoord c){
   float ran = rand();
   if (a.b == lapin && c.taille >= MinFreeBirthLapin){ //On doit faire un .val avec le EC pour connaitre le nb de cases au tour vide
@@ -57,3 +60,15 @@ EnsCoord voisinsEspece(const grille &g, coord c, espece e){
 			ajouteEC(Res, coordAnimal(g[i][n]));
 	return Res;
 }
+
+ensCoord toutEspece(grille g, espece e);
+
+//doit deplaceTousLapins et deplaceTousRenards doivent utiliser toutEspece
+void deplaceTousLapins(grille g1, grille g2); //g1 = ancienne grille et g2 = nouvelle grille
+
+void deplaceTousRenards(grille g1, grille g2);
+
+//Upadte grille doit utiliser deplaceTousLapins et deplaceTousRenards
+void updateGrille(grille g1, grille g2);
+
+void afficheGrille(grille g);
