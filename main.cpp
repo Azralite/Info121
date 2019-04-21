@@ -11,3 +11,13 @@ idem renards
 ancienne <- nouvelle
 nouvelle <- vide
 */
+int main(){
+  grille g, sauv;
+  initialiseGrille(g);
+  while(nbLapin > 0 && nbRenard > 0){
+    grilleVide(sauv);
+    updateGrille(g, sauv);
+    copieGrille(g, sauv);
+    afficheGrille(g);
+  }
+}
