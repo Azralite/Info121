@@ -4,6 +4,16 @@ enum espece { vide, lapin, renard };
 
 struct animal {coord c; espece b; int nour;};
 
+//Variable global pour les renards
+int FoodInit = 5;
+int FoodLapin = 5;
+int FoodReprod = 8;
+int MaxFood = 10;
+float ProbBirthRenard = 0.05;
+//Variable global pour les lapins
+float ProbBirthLapin = 0.3;
+int MinFreeBirthLapin = 4;
+
 /*@param [in] une espece
 * @param [in] une coordonnée
 * @return un animal
@@ -53,10 +63,3 @@ void faimRenard(animal &a);
 * @return false sinon
 */
 bool mortRenard(animal a);
-
-/*@param [in] un animal
-* @param [in] les cases vides autour
-* @return true si l'animal se reproduit
-* @return false sinon
-*/
-bool seReproduitAnimal(animal a, EnsCoord c);
