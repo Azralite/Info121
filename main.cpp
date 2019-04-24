@@ -1,6 +1,5 @@
 #include "fonctionSimu.hpp"
 
-
 /*
 declarer 2 lignes
 utiliser grille vide ou initialise grille (1)
@@ -15,10 +14,10 @@ int main(){
   srand (time(NULL));
   grille g, sauv;
   initialiseGrille(g);
-  while(nbLapin > 0 && nbRenard > 0){
+  while(nbLapin(g) > 0 && nbRenard(g) > 0){
     grilleVide(sauv);
     updateGrille(g, sauv);
     copieGrille(g, sauv);
-    afficheGrille(g);
+    afficheGrille(g,nbLapin(g),nbRenard(g));
   }
 }

@@ -1,7 +1,13 @@
 #include "fonctionSimu.hpp"
 
 // const int gridSize = 20
+//Variable global pour les renards
 
+int FoodReprod = 8;
+float ProbBirthRenard = 0.05;
+//Variable global pour les lapins
+float ProbBirthLapin = 0.3;
+int MinFreeBirthLapin = 4;
 
 int hasard(int val){
 		return rand()%val+1;
@@ -31,10 +37,10 @@ bool seReproduitAnimal(animal a, EnsCoord c){
 void initialiseGrille(grille g){
 	for(int i = 0; i < gridSize; i++){
 		for(int n = 0; n < gridSize; n++){
-			float h = rand();
-			if(h < ProbBirthRenard)
+			float h = hasard(100);
+			if(h < 7)
 				g[i][n] = creerAnimal(renard, creerCoord(i,n));
-			else if (h < ProbBirthRenard + ProbBirthLapin)
+			else if (h < 27)
 				g[i][n] = creerAnimal(lapin, creerCoord(i,n));
 			else
 				g[i][n] = creerAnimal(vide, creerCoord(i,n));
@@ -136,7 +142,7 @@ int nbLapin(grille g){
   int res = 0;
   for(int i = 0; i < gridSize; i ++){
     for (int j =0 ; j < gridSize; j++){
-      if (especeAnimal(getAnimal(creerCoord(i,j))) == lapin) {
+      if (especeAnimal(getAnimal(g,creerCoord(i,j))) == lapin) {
         res++;
       }
     }
@@ -148,7 +154,7 @@ int nbRenard(grille g){
   int res = 0;
   for(int i = 0; i < gridSize; i ++){
     for (int j =0 ; j < gridSize; j++){
-      if (especeAnimal(getAnimal(creerCoord(i,j))) == renard) {
+      if (especeAnimal(getAnimal(g,creerCoord(i,j))) == renard) {
         res++;
       }
     }

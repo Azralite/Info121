@@ -1,5 +1,9 @@
 #include "animal.hpp"
 
+//Variable global pour les renards
+int FoodInit = 5;
+int FoodLapin = 5;
+int MaxFood = 10;
 
 animal creerAnimal(espece e, coord c){
   animal res;

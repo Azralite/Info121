@@ -14,7 +14,7 @@ int hasard(int val);
 */
 bool seReproduitAnimal(animal a, EnsCoord c);
 
-void initialiseGrille(const grille &g);
+void initialiseGrille( grille g);
 
 void verifieGrille(const grille &g);
 
@@ -57,7 +57,9 @@ void deplaceTousEspece(grille g1, espece e, grille g2); // en remplacement poten
  */
 void updateGrille(grille g1, grille g2);
 
+int nbLapin(grille g);
+int nbRenard(grille g);
 /*@param[in] une grille
  *affiche la grille
  */
-void afficheGrille(grille g);
+void afficheGrille(grille g, int l, int r);
