@@ -63,10 +63,29 @@ EnsCoord voisinsEspece(const grille &g, coord c, espece e){
 	return Res;
 }
 
-EnsCoord toutEspece(grille g, espece e);
+EnsCoord toutEspece(grille g, espece e){
+  EnsCoord a = creeEC();
+  for(int i = 0; i < gridSize; i ++){
+    for (int j= 0; j < gridSize; j++) {
+      if(especeAnimal(getAnimal(g, creerCoord(i,j))) == e)
+        ajouteEC(a,creerCoord(i,j));
+    }
+  }
+  return a;
+}
 
-bool attaqueRenard(grille g, animal r);
-
+bool attaqueRenard(grille g, animal r){
+  EnsCoord a = creeEC();
+  a = trouverVoisin(g, coordAnimal(r));
+  for(int i = 0; i < tailleEC(a); i++){
+    if(especeAnimal(getAnimal(g, a[i])) == lapin){
+      mangeAnimal(r);
+      changeCoordAnimal(a[i], r);
+      return true;
+    }
+  }
+  return false;
+}
 //deplaceTousLapins et deplaceTousRenards ou alors deplaceTousEspeces doivent utiliser toutEspece
 
 //g1 = ancienne grille et g2 = nouvelle grille
@@ -102,6 +121,69 @@ void deplaceTousRenards(grille g1, grille g2){
 	}
 }
 //Upadte grille doit utiliser deplaceTousLapins et deplaceTousRenards
-void updateGrille(grille g1, grille g2);
+void updateGrille(grille g1, grille g2){
+  deplaceTousLapins(g1, g2);
+  deplaceTousRenard(g1, g2);
+}
 
-void afficheGrille(grille g);
+
+
+
+bool attaqueRenard(grille g, animal r){
+  EnsCoord a = creeEC();
+  a = trouverVoisin(g, coordAnimal(r));
+  for(int i = 0; i < tailleEC(a); i++){
+    if(especeAnimal(getAnimal(g, a[i])) == lapin){
+      mangeAnimal(r);
+      changeCoordAnimal(a[i], r);
+      return true;
+    }
+  }
+  return false;
+}
+
+int nbLapin(grille g){
+  int res = 0;
+  for(int i = 0; i < gridSize; i ++){
+    for (int j =0 ; j < gridSize; j++){
+      if (especeAnimal(getAnimal(creerCoord(i,j))) == lapin) {
+        res++;
+      }
+    }
+  }
+  return res;
+}
+
+int nbRenard(grille g){
+  int res = 0;
+  for(int i = 0; i < gridSize; i ++){
+    for (int j =0 ; j < gridSize; j++){
+      if (especeAnimal(getAnimal(creerCoord(i,j))) == renard) {
+        res++;
+      }
+    }
+  }
+  return res;
+}
+
+
+
+void afficheGrille(grille g, int l, int r){
+  std::cout << "Le nombre de Lapin: " << l << "(" << l/(gridSize*gridSize) << "%)"<< '\n';
+  std::cout << "Le nombre de Renard: " << r << "(" << l/(gridSize*gridSize) << "%)" <<'\n';
+
+  for(int i = 0; i < gridSize; i ++){
+    for (int j = 0; j < gridSize; j++){
+      if(especeAnimal(getAnimal(g, creerCoord(i,j))) == lapin){
+        std::cout << "L";
+      }
+      if(especeAnimal(getAnimal(g, creerCoord(i,j))) == renard){
+        std::cout << "R";
+      }
+      if(especeAnimal(getAnimal(g, creerCoord(i,j))) == vide){
+        std::cout << " ";
+      }
+    }
+    std::cout  << '\n';
+  }
+}
