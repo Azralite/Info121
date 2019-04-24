@@ -65,12 +65,15 @@ int tailleEC(EnsCoord a){
   return a.taille;
 }
 
+coord coordEC(EnsCoord e, int a){
+    return e.tab[a];
+}
 void supprimeCoord(EnsCoord &ec, coord c){
   int x = getX(c);
   int y = getY(c);
   int sauv = ec.taille;
   for(int i = 0; i < sauv; i++)
-    if(getX(ec.tab[i] == x && getY(ec.tab[i] == y){
+    if(getX(ec.tab[i]) == x && getY(ec.tab[i]) == y){
       ec.tab[i] = ec.tab[ec.taille-1];
       ec.taille--;
     }

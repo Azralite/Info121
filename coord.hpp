@@ -65,11 +65,13 @@ coord randomEC(EnsCoord c);
 */
 int tailleEC(EnsCoord a);
 
+coord coordEC(EnsCoord e, int a);
+
 /*@param[in/out] un ensemble de coordonées
  *@param une coordonée
  *supprimer la coordonée dans l'ensemble des coordonée
  */
-void supprimeCoord(EnsCoord &ec, coord c),
+void supprimeCoord(EnsCoord &ec, coord c);
 
 /*@param [in] une coordonnée
 * @return l'ensemble des coordonnées des cases voisine

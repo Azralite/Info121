@@ -1,6 +1,6 @@
 #include "grille.hpp"
 
-const int gridSize = 20
+// const int gridSize = 20
 
 /*@param un entiers
  *renvoie aléatoirement un entiers entre 0 et val
@@ -24,7 +24,7 @@ EnsCoord voisinsEspece(const grille &g, coord c, espece e);
  *@param[in] une espece
  *@return l'ensemble des coordonnées de l'espèce dans la grille
  */
-ensCoord toutEspece(grille g, espece e);
+EnsCoord toutEspece(grille g, espece e);
 
 /*@param[in/out] une grille
  *@param[in/out] un renard
@@ -35,7 +35,7 @@ bool attaqueRenard(grille g, animal r);
  *@param[in/out] une grille
  *Deplace tous les lapins de g1 dans g2 de manière aléatoire
  */
-void deplaceTousLapins(grille g1, grille g2);
+void deplaceTousLapins(grille g1, grille newG);
 
 /*@param[in] une grille
  *@param[in/out] une grille

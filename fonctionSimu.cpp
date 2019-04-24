@@ -1,10 +1,10 @@
 #include "fonctionSimu.hpp"
 
-const int gridSize = 20
+// const int gridSize = 20
 
 
 int hasard(int val){
-		return ran = rand()%val+1;
+		return rand()%val+1;
 }
 
 bool seReproduitAnimal(animal a, EnsCoord c){
@@ -28,13 +28,13 @@ bool seReproduitAnimal(animal a, EnsCoord c){
   return false;
 }
 
-void initialiseGrille(const grille &g){
+void initialiseGrille(grille g){
 	for(int i = 0; i < gridSize; i++){
 		for(int n = 0; n < gridSize; n++){
-			int h = hasard();
-			if(h < probRenard)
+			float h = rand();
+			if(h < ProbBirthRenard)
 				g[i][n] = creerAnimal(renard, creerCoord(i,n));
-			else if (h < probRenard + probLapin)
+			else if (h < ProbBirthRenard + ProbBirthLapin)
 				g[i][n] = creerAnimal(lapin, creerCoord(i,n));
 			else
 				g[i][n] = creerAnimal(vide, creerCoord(i,n));
@@ -46,20 +46,23 @@ void verifieGrille(const grille &g){
 	for(int i = 0; i < gridSize; i++)
 		for(int n = 0; n < gridSize; n++)
 			if( not egalCoord( coordAnimal(g[i][n]), creerCoord(i,n) ) ){
-				cout << "Erreur dans la grille à la position " << i << ":" << n << endl;
+				std::cout << "Erreur dans la grille à la position " << i << ":" << n << std::endl;
 				exit(1);
 			}
 }
 
 
 
-EnsCoord voisinsEspece(const grille &g, coord c, espece e){
-	EnsCoord EC = trouverVoisins(c);
+EnsCoord voisinsEspece(const grille g, coord c, espece e){
+	EnsCoord EC = trouverVoisin(c);
 	EnsCoord Res;
 	Res = creeEC();
-	for(int i = 0; i < tailleEC(EC); i++)
-		if(especeAnimal(g[i][n]) == e)
-			ajouteEC(Res, coordAnimal(g[i][n]));
+	for(int i = 0; i < tailleEC(EC); i++){
+	int x = getX(coordEC(EC,i));
+	int y = getY(coordEC(EC,i));
+	if(especeAnimal(g[x][y]) == e)
+		ajouteEC(Res, coordAnimal(g[x][y]));
+	}
 	return Res;
 }
 
@@ -76,11 +79,11 @@ EnsCoord toutEspece(grille g, espece e){
 
 bool attaqueRenard(grille g, animal r){
   EnsCoord a = creeEC();
-  a = trouverVoisin(g, coordAnimal(r));
+  a = trouverVoisin(coordAnimal(r));
   for(int i = 0; i < tailleEC(a); i++){
-    if(especeAnimal(getAnimal(g, a[i])) == lapin){
+    if(especeAnimal(getAnimal(g, coordEC(a,i))) == lapin){
       mangeAnimal(r);
-      changeCoordAnimal(a[i], r);
+      changeCoordAnimal(coordEC(a,i), r);
       return true;
     }
   }
@@ -90,20 +93,21 @@ bool attaqueRenard(grille g, animal r){
 
 //g1 = ancienne grille et g2 = nouvelle grille
 void deplaceTousLapins(grille g1, grille newG){
-	EnsCoord coordLapin = tousEspece(g1, lapin);
+	EnsCoord coordLapin = toutEspece(g1, lapin);
 	int sauv = tailleEC(coordLapin);
 	for(int i = 0; i < sauv; i++){
 		coord c = randomEC(coordLapin);
 		supprimeCoord(coordLapin, c);
 		EnsCoord caseVide = voisinsEspece(g1, c, vide);
 		coord newCoord = randomEC(caseVide);
-		changeCoordAnimal(newCoord, getAnimal(g1, c));
+		animal a = getAnimal(g1,c);
+		changeCoordAnimal(newCoord, a);
 		setAnimal(newG, getAnimal(g1, c));
 	}
 }
 
 void deplaceTousRenards(grille g1, grille g2){
-	EnsCoord coordRenard = tousEspece(g1, renard);
+	EnsCoord coordRenard = toutEspece(g1, renard);
 	int sauv = tailleEC(coordRenard);
 	for(int i = 0; i < sauv; i++){
 		coord c = randomEC(coordRenard);
@@ -116,31 +120,17 @@ void deplaceTousRenards(grille g1, grille g2){
 				EnsCoord caseVide = voisinsEspece(g2, c, vide);
 				coord newCoord = randomEC(caseVide);
 				changeCoordAnimal(newCoord, r);
-				setAnimal(newG, r);
+				setAnimal(g2, r);
 			}
 	}
 }
 //Upadte grille doit utiliser deplaceTousLapins et deplaceTousRenards
 void updateGrille(grille g1, grille g2){
   deplaceTousLapins(g1, g2);
-  deplaceTousRenard(g1, g2);
+  deplaceTousRenards(g1, g2);
 }
 
 
-
-
-bool attaqueRenard(grille g, animal r){
-  EnsCoord a = creeEC();
-  a = trouverVoisin(g, coordAnimal(r));
-  for(int i = 0; i < tailleEC(a); i++){
-    if(especeAnimal(getAnimal(g, a[i])) == lapin){
-      mangeAnimal(r);
-      changeCoordAnimal(a[i], r);
-      return true;
-    }
-  }
-  return false;
-}
 
 int nbLapin(grille g){
   int res = 0;

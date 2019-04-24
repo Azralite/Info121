@@ -14,7 +14,7 @@ void copieGrille(grille g1, grille g2){
 	g2 = g1;
 }
 
-animal getAnimal(grille g, const coord &c){
+animal getAnimal(grille g, coord c){
 	int x = getX(c);
 	int y = getY(c);
 	return g[x][y];

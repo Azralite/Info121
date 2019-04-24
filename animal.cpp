@@ -1,16 +1,6 @@
 #include "animal.hpp"
 
 
-//Variable global pour les renards
-int FoodInit = 5;
-int FoodLapin = 5;
-int FoodReprod = 8;
-int MaxFood = 10;
-float ProbBirthRenard = 0.05;
-//Variable global pour les lapins
-float ProbBirthLapin = 0.3;
-int MinFreeBirthLapin = 4;
-
 animal creerAnimal(espece e, coord c){
   animal res;
   res.c = creerCoord(getX(c),getY(c));

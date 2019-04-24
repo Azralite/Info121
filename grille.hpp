@@ -8,6 +8,6 @@ void grilleVide(grille g);
 
 void copieGrille(const grille g1, grille g2);
 
-animal getAnimal(const grille g, const coord &c);
+animal getAnimal(grille g, coord c);
 
-animal setAnimal(grille g, const animal p);
+void setAnimal(grille g,  animal a);
