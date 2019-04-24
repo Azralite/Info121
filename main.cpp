@@ -12,6 +12,7 @@ ancienne <- nouvelle
 nouvelle <- vide
 */
 int main(){
+  srand (time(NULL));
   grille g, sauv;
   initialiseGrille(g);
   while(nbLapin > 0 && nbRenard > 0){

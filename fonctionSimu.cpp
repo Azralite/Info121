@@ -3,8 +3,10 @@
 const int gridSize = 20
 
 
-int hasard(int val);
-	
+int hasard(int val){
+		return ran = rand()%val+1;
+}
+
 bool seReproduitAnimal(animal a, EnsCoord c){
   float ran = rand();
   if (a.b == lapin && c.taille >= MinFreeBirthLapin){ //On doit faire un .val avec le EC pour connaitre le nb de cases au tour vide
@@ -61,7 +63,7 @@ EnsCoord voisinsEspece(const grille &g, coord c, espece e){
 	return Res;
 }
 
-ensCoord toutEspece(grille g, espece e);
+EnsCoord toutEspece(grille g, espece e);
 
 bool attaqueRenard(grille g, animal r);
 
