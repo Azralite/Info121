@@ -20,7 +20,7 @@ animal getAnimal(grille g, const coord &c){
 	return g[x][y];
 }
 
-void setAnimal(grille g, const animal &a){
+void setAnimal(grille g, animal a){
 	int x = getX(coordAnimal(a));
 	int y = getY(coordAnimal(a));
 	g[x][y] = a;

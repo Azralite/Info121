@@ -80,24 +80,3 @@ bool mortRenard(animal a){
   }
   return false;
 }
-
-bool seReproduitAnimal(animal a, EnsCoord c){
-  float ran = rand();
-  if (a.b == lapin && c.taille >= MinFreeBirthLapin){ //On doit faire un .val avec le EC pour connaitre le nb de cases au tour vide
-    if(ran > ProbBirthLapin){
-      return false;
-    }
-    else{
-      return true;
-    }
-  }
-  else if(a.b == renard && a.nour >= FoodReprod){
-    if(ran > ProbBirthRenard){
-      return false;
-    }
-    else{
-      return true;
-    }
-  }
-  return false;
-}

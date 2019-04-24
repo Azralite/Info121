@@ -6,7 +6,12 @@ const int gridSize = 20
  *renvoie aléatoirement un entiers entre 0 et val
  */
 int hasard(int val);
-  
+
+/*@param [in] un animal
+* @param [in] les cases vides autour
+* @return true si l'animal se reproduit
+* @return false sinon
+*/
 bool seReproduitAnimal(animal a, EnsCoord c);
 
 void initialiseGrille(const grille &g);
@@ -42,8 +47,9 @@ void deplaceTousRenards(grille g1, grille g2);
  *@param[in] une espece
  *@param[in/out] une grille
  *Deplace tous les animaux de l'espece e de g1 dans g2 de manière aléatoire
- */
+
 void deplaceTousEspece(grille g1, espece e, grille g2); // en remplacement potentiel de deplaceTousRenards et deplaceTousLapins
+*/
 
 /*@param[in] une grille
  *@param[in/out] une grille

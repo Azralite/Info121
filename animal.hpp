@@ -53,10 +53,3 @@ void faimRenard(animal &a);
 * @return false sinon
 */
 bool mortRenard(animal a);
-
-/*@param [in] un animal
-* @param [in] les cases vides autour
-* @return true si l'animal se reproduit
-* @return false sinon
-*/
-bool seReproduitAnimal(animal a, EnsCoord c);

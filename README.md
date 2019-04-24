@@ -7,7 +7,7 @@ Laisser **deplaceTousLapins** et **deplaceTousRenards** comme dans td9 ou faire 
 **Azralite :**
 
 * tousEspece()
-* updateGrille() ou afficheGrille()
+* updateGrille()
 * attaqueRenard()
 
 
@@ -15,6 +15,6 @@ Laisser **deplaceTousLapins** et **deplaceTousRenards** comme dans td9 ou faire 
 
 * deplaceTousEspece() ou deplaceTousRenard() et deplaceTousLapins()
 * hasard()
-* updateGrille() ou afficheGrille()
+* afficheGrille()
 
 **Attention: Docu des fonctions à coder dans le fichier .hpp**
