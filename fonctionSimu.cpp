@@ -31,7 +31,7 @@ bool seReproduitAnimal(animal a, EnsCoord c){
 void initialiseGrille(const grille &g){
 	for(int i = 0; i < gridSize; i++){
 		for(int n = 0; n < gridSize; n++){
-			h = hasard();
+			int h = hasard();
 			if(h < probRenard)
 				g[i][n] = creerAnimal(renard, creerCoord(i,n));
 			else if (h < probRenard + probLapin)
@@ -69,12 +69,38 @@ bool attaqueRenard(grille g, animal r);
 
 //deplaceTousLapins et deplaceTousRenards ou alors deplaceTousEspeces doivent utiliser toutEspece
 
-void deplaceTousLapins(grille g1, grille g2); //g1 = ancienne grille et g2 = nouvelle grille
+//g1 = ancienne grille et g2 = nouvelle grille
+void deplaceTousLapins(grille g1, grille newG){
+	EnsCoord coordLapin = tousEspece(g1, lapin);
+	int sauv = tailleEC(coordLapin);
+	for(int i = 0; i < sauv; i++){
+		coord c = randomEC(coordLapin);
+		supprimeCoord(coordLapin, c);
+		EnsCoord caseVide = voisinsEspece(g1, c, vide);
+		coord newCoord = randomEC(caseVide);
+		changeCoordAnimal(newCoord, getAnimal(g1, c));
+		setAnimal(newG, getAnimal(g1, c));
+	}
+}
 
-void deplaceTousRenards(grille g1, grille g2);
-
-void deplaceTousEspeces(grile g1, espece e, grille g2); // remplace potentiellement deplaceTousLapins et deplaceTousRenards
-
+void deplaceTousRenards(grille g1, grille g2){
+	EnsCoord coordRenard = tousEspece(g1, renard);
+	int sauv = tailleEC(coordRenard);
+	for(int i = 0; i < sauv; i++){
+		coord c = randomEC(coordRenard);
+		supprimeCoord(coordRenard, c);
+		animal r = getAnimal(g1, c);
+		if( not mortRenard(r) )
+			if(attaqueRenard(g2, r))
+				setAnimal(g2, r);
+			else{
+				EnsCoord caseVide = voisinsEspece(g2, c, vide);
+				coord newCoord = randomEC(caseVide);
+				changeCoordAnimal(newCoord, r);
+				setAnimal(newG, r);
+			}
+	}
+}
 //Upadte grille doit utiliser deplaceTousLapins et deplaceTousRenards
 void updateGrille(grille g1, grille g2);
 
