@@ -51,14 +51,19 @@ EnsCoord creeEC(){
 }
 
 
-void ajouteEC(EnsCoord a, coord c){
+void ajouteEC(EnsCoord &a, coord c){
   a.tab[a.taille] = c;
   a.taille ++;
 }
 
 coord randomEC(EnsCoord c){
-  int ran = rand()%c.taille - 1;
-  return c.tab[ran];
+  int ran;
+  if(tailleEC(c) != 0){
+    ran = rand()%c.taille - 1;
+    return c.tab[ran];
+  }
+  std::cerr << "ERREUR DE TAILLE" << '\n';
+  return c.tab[0];
 }
 
 int tailleEC(EnsCoord a){

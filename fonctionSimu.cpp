@@ -105,10 +105,16 @@ void deplaceTousLapins(grille g1, grille newG){
 		coord c = randomEC(coordLapin);
 		supprimeCoord(coordLapin, c);
 		EnsCoord caseVide = voisinsEspece(g1, c, vide);
-		coord newCoord = randomEC(caseVide);
-		animal a = getAnimal(g1,c);
-		changeCoordAnimal(newCoord, a);
-		setAnimal(newG, getAnimal(g1, c));
+		if(tailleEC(caseVide) != 0){
+			coord newCoord = randomEC(caseVide);
+			animal a = getAnimal(g1,c);
+			changeCoordAnimal(newCoord, a);
+			setAnimal(newG, a);
+		}
+		else{
+			animal a = getAnimal(g1,c);
+			setAnimal(newG,a);
+		}
 	}
 }
 
@@ -179,7 +185,11 @@ void afficheGrille(grille g, int l, int r){
       if(especeAnimal(getAnimal(g, creerCoord(i,j))) == vide){
         std::cout << " ";
       }
+
     }
     std::cout  << '\n';
   }
+	std::cout  << '\n';
+	std::cout  << '\n';
+	std::cout  << '\n';
 }

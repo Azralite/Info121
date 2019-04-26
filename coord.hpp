@@ -53,7 +53,7 @@ EnsCoord creeEC();
 * @param [in] une coordonnée
 * ajoute la coordonnée a l'ensemble
 */
-void ajouteEC(EnsCoord a, coord c);
+void ajouteEC(EnsCoord &a, coord c);
 
 /*@param [in] un ensemble de coordonnées
 *@return une coordonnée aléatoire d'un ensemble
