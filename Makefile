@@ -13,7 +13,7 @@ projet: main.cpp coord.o animal.o grille.o fonctionSimu.o
 coord.o: coord.cpp coord.hpp
 animal.o: animal.cpp animal.hpp
 grille.o: grille.cpp grille.hpp
-fonctionSimu.o: fonctionSimu.cpp fonctionSimu.hpp 
+fonctionSimu.o: fonctionSimu.cpp fonctionSimu.hpp
 
 # Pour faire le ménage
 clean:
