@@ -1,20 +1,14 @@
 # Info121
 
-Laisser **deplaceTousLapins** et **deplaceTousRenards** comme dans td9 ou faire une procedure **deplaceTousEspece** qui prend en plus l'espece qu'on veut déplacer en paramètre de manière à éviter de faire 2 fois plus ou moins la même chose ?
+**Bug réglé:**
 
-**Proposition de répartition :**
+* Erreur de segmentation dût à randomEC qui renvoyait un chiffre entre -1 et sizeGrid-1
+* l'affichage du même tableau à chaque boucle dû à une simple inversion entre les 2 grilles passé en paramètres à copieGrille
 
-**Azralite :**
+**Bug toujours present:**
 
-* tousEspece()
-* updateGrille()
-* attaqueRenard()
-
-
-**Guildart :**
-
-* deplaceTousEspece() ou deplaceTousRenard() et deplaceTousLapins()
-* hasard()
-* afficheGrille()
-
-**Attention: Docu des fonctions à coder dans le fichier .hpp**
+* Problème avec repro des Lapin car le nb de lapin n'augmente jamais
+* Problème quand reste peu de Lapin et de Renard
+    * Le renard de meurt pas
+    * Le lapin même côte à côte avec le renard n'est pas mangé
+      * Les déplacement se font toujours haut gauche donc quand quasi plus de lapin/renard ils sont tous tassés à gauche et ne peuvent se déplacé donc surement dût un problème avec trouverVoisin
