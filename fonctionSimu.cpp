@@ -13,6 +13,7 @@ int hasard(int val){
 		return rand()%val+1;
 }
 
+/**utiliser type abstrait**/
 bool seReproduitAnimal(animal a, EnsCoord c){
   float ran = rand();
   if (a.b == lapin && c.taille >= MinFreeBirthLapin){ //On doit faire un .val avec le EC pour connaitre le nb de cases au tour vide
@@ -58,16 +59,16 @@ void verifieGrille(const grille &g){
 }
 
 
-
+/**revoir usage type abstrait EnsCoord**/
 EnsCoord voisinsEspece(const grille g, coord c, espece e){
 	EnsCoord EC = trouverVoisin(c);
 	EnsCoord Res;
 	Res = creeEC();
 	for(int i = 0; i < tailleEC(EC); i++){
-	int x = getX(coordEC(EC,i));
-	int y = getY(coordEC(EC,i));
-	if(especeAnimal(g[x][y]) == e)
-		ajouteEC(Res, coordAnimal(g[x][y]));
+		int x = getX(coordEC(EC,i));
+		int y = getY(coordEC(EC,i));
+		if(especeAnimal(g[x][y]) == e)
+			ajouteEC(Res,coordAnimal(g[x][y]));
 	}
 	return Res;
 }
@@ -108,7 +109,9 @@ void deplaceTousLapins(grille g1, grille newG){
 		if(tailleEC(caseVide) != 0){
 			coord newCoord = randomEC(caseVide);
 			animal a = getAnimal(g1,c);
+			//std::cout << "coord lapin : " << "(" <<a.c.x << ";" << a.c.y << ")" << '\n';
 			changeCoordAnimal(newCoord, a);
+			//std::cout << "Nouvelle coord lapin : " << "(" << a.c.x << ";" << a.c.y << ")" << '\n';
 			setAnimal(newG, a);
 		}
 		else{
@@ -125,7 +128,7 @@ void deplaceTousRenards(grille g1, grille g2){
 		coord c = randomEC(coordRenard);
 		supprimeCoord(coordRenard, c);
 		animal r = getAnimal(g1, c);
-		if( not mortRenard(r) )
+		if(not mortRenard(r)){
 			if(attaqueRenard(g2, r))
 				setAnimal(g2, r);
 			else{
@@ -134,6 +137,7 @@ void deplaceTousRenards(grille g1, grille g2){
 				changeCoordAnimal(newCoord, r);
 				setAnimal(g2, r);
 			}
+		}
 	}
 }
 //Upadte grille doit utiliser deplaceTousLapins et deplaceTousRenards

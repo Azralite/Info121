@@ -59,7 +59,7 @@ void ajouteEC(EnsCoord &a, coord c){
 coord randomEC(EnsCoord c){
   int ran;
   if(tailleEC(c) != 0){
-    ran = rand()%c.taille - 1;
+    ran = rand()%c.taille;
     return c.tab[ran];
   }
   std::cerr << "ERREUR DE TAILLE" << '\n';
@@ -73,6 +73,7 @@ int tailleEC(EnsCoord a){
 coord coordEC(EnsCoord e, int a){
     return e.tab[a];
 }
+
 void supprimeCoord(EnsCoord &ec, coord c){
   int x = getX(c);
   int y = getY(c);
