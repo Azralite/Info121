@@ -15,7 +15,7 @@ int hasard(int val){
 
 /**utiliser type abstrait**/
 bool seReproduitAnimal(animal a, EnsCoord c){
-  float ran = rand();
+  float ran = hasard(99)/100.;
   if (a.b == lapin && c.taille >= MinFreeBirthLapin){ //On doit faire un .val avec le EC pour connaitre le nb de cases au tour vide
     if(ran > ProbBirthLapin){
       return false;
@@ -95,6 +95,8 @@ void deplaceTousLapins(grille g1, grille newG){
 		if(tailleEC(caseVide) != 0){
 			coord newCoord = randomEC(caseVide);
 			animal a = getAnimal(g1,c);
+			if(seReproduitAnimal(a, caseVide))
+				setAnimal(newG, a);
 			changeCoordAnimal(newCoord, a);
 			setAnimal(newG, a);
 		}
@@ -137,15 +139,19 @@ void deplaceTousRenards(grille g1, grille g2){
 		coord c = randomEC(coordRenard);
 		supprimeCoord(coordRenard, c);
 		animal r = getAnimal(g1, c);
-		if(not mortRenard(r)){
-			if(attaqueRenard(g2, r))
-				setAnimal(g2, r);
-			else{
-				EnsCoord caseVide = voisinsEspece(g2, c, vide);
-				if(tailleEC(caseVide) != 0)
-					changeCoordAnimal(randomEC(caseVide), r);
-				setAnimal(g2, r);
+		EnsCoord caseVide = voisinsEspece(g2, c, vide);
+
+		if((!mortRenard(r)) && attaqueRenard(g2, r)){
+			setAnimal(g2, r);
+			if(seReproduitAnimal(r, caseVide)){
+				setAnimal(g2, getAnimal(g1, c));
 			}
+		}else if(!mortRenard(r)){
+			if(seReproduitAnimal(r, caseVide))
+				setAnimal(g2, r);
+			if(tailleEC(caseVide) != 0)
+				changeCoordAnimal(randomEC(caseVide), r);
+			setAnimal(g2, r);
 		}
 	}
 }
