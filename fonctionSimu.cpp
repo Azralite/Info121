@@ -95,9 +95,7 @@ void deplaceTousLapins(grille g1, grille newG){
 		if(tailleEC(caseVide) != 0){
 			coord newCoord = randomEC(caseVide);
 			animal a = getAnimal(g1,c);
-			//std::cout << "coord lapin : " << "(" <<a.c.x << ";" << a.c.y << ")" << '\n';
 			changeCoordAnimal(newCoord, a);
-			//std::cout << "Nouvelle coord lapin : " << "(" << a.c.x << ";" << a.c.y << ")" << '\n';
 			setAnimal(newG, a);
 		}
 		else{
@@ -144,8 +142,8 @@ void deplaceTousRenards(grille g1, grille g2){
 				setAnimal(g2, r);
 			else{
 				EnsCoord caseVide = voisinsEspece(g2, c, vide);
-				coord newCoord = randomEC(caseVide);
-				changeCoordAnimal(newCoord, r);
+				if(tailleEC(caseVide) != 0)
+					changeCoordAnimal(randomEC(caseVide), r);
 				setAnimal(g2, r);
 			}
 		}
