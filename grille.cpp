@@ -11,11 +11,10 @@ void grilleVide(grille g){
 			g[i][n] = creerAnimal(vide, {i,n});
 }
 
-void copieGrille(grille g1, grille newG){
+void copieGrille(grille g1, grille g2){
 	for(int i = 0; i < gridSize; i++)
 		for(int n = 0; n < gridSize; n++)
-			newG[i][n] = g1[i][n];
-	//g2 = g1;
+			g1[i][n] = g2[i][n];
 }
 
 animal getAnimal(grille g, coord c){
