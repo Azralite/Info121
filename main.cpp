@@ -14,7 +14,7 @@ int main(){
   while(nbLapin(g) > 0 && nbRenard(g) > 0){
     grilleVide(sauv);
     updateGrille(g, sauv);
-    afficheGrille(sauv,0,0);
+    //afficheGrille(sauv,0,0);
     copieGrille(g, sauv);
     afficheGrille(g,nbLapin(g),nbRenard(g));
   }

@@ -30,7 +30,7 @@ EnsCoord toutEspece(grille g, espece e);
  *@param[in/out] un renard
  *renvoie true si un lapin est voisins de r et mets à jour ces coordonnées. Renvoie false si non
  */
-bool attaqueRenard(grille g, animal r);
+bool attaqueRenard(grille g, animal &r);
 /*@param[in] une grille
  *@param[in/out] une grille
  *Deplace tous les lapins de g1 dans g2 de manière aléatoire

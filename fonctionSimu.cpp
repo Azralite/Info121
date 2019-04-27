@@ -84,21 +84,7 @@ EnsCoord toutEspece(grille g, espece e){
   return a;
 }
 
-bool attaqueRenard(grille g, animal r){
-  EnsCoord a = creeEC();
-  a = trouverVoisin(coordAnimal(r));
-  for(int i = 0; i < tailleEC(a); i++){
-    if(especeAnimal(getAnimal(g, coordEC(a,i))) == lapin){
-      mangeAnimal(r);
-      changeCoordAnimal(coordEC(a,i), r);
-      return true;
-    }
-  }
-  return false;
-}
-//deplaceTousLapins et deplaceTousRenards ou alors deplaceTousEspeces doivent utiliser toutEspece
 
-//g1 = ancienne grille et g2 = nouvelle grille
 void deplaceTousLapins(grille g1, grille newG){
 	EnsCoord coordLapin = toutEspece(g1, lapin);
 	int sauv = tailleEC(coordLapin);
@@ -120,6 +106,31 @@ void deplaceTousLapins(grille g1, grille newG){
 		}
 	}
 }
+
+
+bool attaqueRenard(grille g, animal &r){
+	EnsCoord a = creeEC();
+	a = trouverVoisin(coordAnimal(r));
+	for(int i = 0; i < tailleEC(a); i++){
+		if(especeAnimal(getAnimal(g, coordEC(a,i))) == lapin){
+			mangeAnimal(r);
+			changeCoordAnimal(coordEC(a,i), r);
+			return true;
+		}
+	}
+	return false;
+}
+
+/*bool attaqueRenard(grille g, animal &r){
+	EnsCoord a = voisinsEspece(g, coordAnimal(r), lapin);
+	if(tailleEC(a) != 0){
+		mangeAnimal(r);
+		changeCoordAnimal(randomEC(a), r);
+		return true;
+	}
+
+	return false;
+}*/
 
 void deplaceTousRenards(grille g1, grille g2){
 	EnsCoord coordRenard = toutEspece(g1, renard);
@@ -181,13 +192,13 @@ void afficheGrille(grille g, int l, int r){
   for(int i = 0; i < gridSize; i ++){
     for (int j = 0; j < gridSize; j++){
       if(especeAnimal(getAnimal(g, creerCoord(i,j))) == lapin){
-        std::cout << "L";
+        std::cout << "L" << " ";
       }
       if(especeAnimal(getAnimal(g, creerCoord(i,j))) == renard){
-        std::cout << "R";
+        std::cout << "R" << " ";
       }
       if(especeAnimal(getAnimal(g, creerCoord(i,j))) == vide){
-        std::cout << " ";
+        std::cout << "  ";
       }
 
     }
