@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cstdlib>
-
+#include <unistd.h>
 const int TAILLE = 20;
 
 struct coord{

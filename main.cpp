@@ -17,6 +17,7 @@ int main(){
     //afficheGrille(sauv,0,0);
     copieGrille(g, sauv);
     afficheGrille(g,nbLapin(g),nbRenard(g));
+    sleep(1);
   }
   /*grille test;
   initialiseGrille(test);
