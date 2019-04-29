@@ -95,8 +95,10 @@ void deplaceTousLapins(grille g1, grille newG){
 		if(tailleEC(caseVide) != 0){
 			coord newCoord = randomEC(caseVide);
 			animal a = getAnimal(g1,c);
-			if(seReproduitAnimal(a, caseVide))
-				setAnimal(newG, a);
+			if(seReproduitAnimal(a, caseVide)){
+				animal newLapin = creerAnimal(especeAnimal(a), coordAnimal(a));
+				setAnimal(newG, newLapin);
+			}
 			changeCoordAnimal(newCoord, a);
 			setAnimal(newG, a);
 		}
@@ -139,16 +141,22 @@ void deplaceTousRenards(grille g1, grille g2){
 		coord c = randomEC(coordRenard);
 		supprimeCoord(coordRenard, c);
 		animal r = getAnimal(g1, c);
+		faimRenard(r);
 		EnsCoord caseVide = voisinsEspece(g2, c, vide);
 
 		if((!mortRenard(r)) && attaqueRenard(g2, r)){
 			setAnimal(g2, r);
 			if(seReproduitAnimal(r, caseVide)){
-				setAnimal(g2, getAnimal(g1, c));
+				animal oldR = getAnimal(g1, c);
+				faimRenard(oldR);
+				animal newRenard = creerAnimal(especeAnimal(oldR), coordAnimal(oldR));
+				setAnimal(g2, newRenard);
 			}
 		}else if(!mortRenard(r)){
-			if(seReproduitAnimal(r, caseVide))
-				setAnimal(g2, r);
+			if(seReproduitAnimal(r, caseVide)){
+				animal newRenard = creerAnimal(especeAnimal(r), coordAnimal(r));
+				setAnimal(g2, newRenard);
+			}
 			if(tailleEC(caseVide) != 0)
 				changeCoordAnimal(randomEC(caseVide), r);
 			setAnimal(g2, r);
@@ -190,8 +198,8 @@ int nbRenard(grille g){
 
 
 void afficheGrille(grille g, int l, int r){
-  std::cout << "Le nombre de Lapin: " << l << "(" << l/(gridSize*gridSize) << "%)"<< '\n';
-  std::cout << "Le nombre de Renard: " << r << "(" << l/(gridSize*gridSize) << "%)" <<'\n';
+  std::cout << "Le nombre de Lapin: " << l << "(" << float(l)/(gridSize*gridSize) << "%)"<< '\n';
+  std::cout << "Le nombre de Renard: " << r << "(" << float(r)/(gridSize*gridSize) << "%)" <<'\n';
 
   for(int i = 0; i < gridSize; i ++){
     for (int j = 0; j < gridSize; j++){
