@@ -1,7 +1,7 @@
 # Le compilateur à utiliser
 CXX = g++
 # Les options du compilateur
-CXXFLAGS = -Wall -std=c++11 -g
+CXXFLAGS = -Wall -std=c++11 -g -lMLV
 
 # Les programmes principaux
 # On donne le fichier cpp et la liste des fichiers .o qu'ils utilisent

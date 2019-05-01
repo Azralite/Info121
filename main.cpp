@@ -1,5 +1,20 @@
 #include "fonctionSimu.hpp"
+#include "MLV.h"
+#define cyan   MLV_rgba(0,175,255,255)
+#define transp   MLV_rgba(0,0,0,0)
+#define rouge   MLV_rgba(200,0,0,255)
+//int gridSize = 20;
 
+MLV_Image *imageSimulation(grille t){
+  MLV_Image *image = MLV_create_image (10*gridSize, 10*gridSize);
+  for(int i = 0; i < gridSize; i++)
+    for(int n = 0; n < gridSize; n++)
+      if(especeAnimal(t[i][n]) == lapin)
+        MLV_draw_circle_on_image(5+i*10, 5+n*10, 5, cyan, image);
+      else if(especeAnimal(t[i][n]) == renard)
+        MLV_draw_circle_on_image(5+i*10, 5+n*10, 5, rouge, image);
+  return image;
+}
 
 void afficheCoord(coord a){
   int x = getX(a);
@@ -11,7 +26,10 @@ int main(){
   srand (time(NULL));
   grille g, sauv;
   initialiseGrille(g);
+
+  mlv::window_t foxWar = mlv::window_t( "FoxWar", "essai", 200, 200 );
   while(nbLapin(g) > 0 && nbRenard(g) > 0){
+    MLV_draw_image(imageSimulation(g), 0, 0);
     grilleVide(sauv);
     updateGrille(g, sauv);
     //afficheGrille(sauv,0,0);
