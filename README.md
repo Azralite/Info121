@@ -10,3 +10,6 @@
 **Bug toujours present:**
 
 * RAS à ce jour
+
+**Ligne de commande :**  g++ coord.cpp animal.cpp grille.cpp fonctionSimu.cpp main.cpp -Wall -std=c++11 -lMLV -o main
+
