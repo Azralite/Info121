@@ -2,7 +2,9 @@
 
 enum espece { vide, lapin, renard };
 
-struct animal {coord c; espece b; int nour;};
+
+//On prend 0 pour les Hommes et 1 pour les Femmes
+struct animal {coord c; espece b; int nour; int sexe;};
 
 
 
@@ -23,6 +25,10 @@ coord coordAnimal(animal a);
 */
 espece especeAnimal(animal a);
 
+/*@param [in] un animal
+* @return 0 ou 1  en fonction de son sexe
+*/
+int sexeAnimal(animal a);
 /*@param [in] un animal
 * @return la nourriture de l'animal si c'est un renard
 * @return 0 si ce n'est pas un renard

@@ -16,7 +16,10 @@ int hasard(int val){
 /**utiliser type abstrait**/
 bool seReproduitAnimal(animal a, EnsCoord c){
   float ran = hasard(99)/100.;
-  if (a.b == lapin && c.taille >= MinFreeBirthLapin){ //On doit faire un .val avec le EC pour connaitre le nb de cases au tour vide
+	int taille = tailleEC(c);
+	espece esp = especeAnimal(a);
+	int nourriture = nourritureRenard(a);
+  if (esp == lapin && taille >= MinFreeBirthLapin){ //On doit faire un .val avec le EC pour connaitre le nb de cases au tour vide
     if(ran > ProbBirthLapin){
       return false;
     }
@@ -24,7 +27,7 @@ bool seReproduitAnimal(animal a, EnsCoord c){
       return true;
     }
   }
-  else if(a.b == renard && a.nour >= FoodReprod){
+  else if(esp == renard && nourriture >= FoodReprod){
     if(ran > ProbBirthRenard){
       return false;
     }
@@ -34,6 +37,40 @@ bool seReproduitAnimal(animal a, EnsCoord c){
   }
   return false;
 }
+
+bool seReproduitAnimalSexe(animal a, EnsCoord c, grille g){
+	if (especeAnimal(a) == renard) {
+		int nourriture = nourritureRenard(a);
+		if(nourriture >= FoodReprod){
+			for (int i = 0; i < tailleEC(c); i++) {
+				int x = getX(coordEC(c,i));
+				int y = getY(coordEC(c,i));
+				animal test = getAnimal(g,creerCoord(x,y));
+				if (especeAnimal(test) == especeAnimal(a)) {
+					if(sexeAnimal(test) != sexeAnimal(a)){
+						return (hasard(99)/100. <= ProbBirthRenard);
+					}
+				}
+			}
+		}
+		return false;
+	}
+	if (especeAnimal(a) == lapin) {
+		for (int i = 0; i < tailleEC(c); i++) {
+			int x = getX(coordEC(c,i));
+			int y = getY(coordEC(c,i));
+			animal test = getAnimal(g,creerCoord(x,y));
+			if (especeAnimal(test) == especeAnimal(a)) {
+				if(sexeAnimal(test) != sexeAnimal(a)){
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	return false;
+}
+
 
 void initialiseGrille(grille g){
 	for(int i = 0; i < gridSize; i++){
@@ -198,8 +235,8 @@ int nbRenard(grille g){
 
 
 void afficheGrille(grille g, int l, int r){
-  std::cout << "Le nombre de Lapin: " << l << "(" << float(l)/(gridSize*gridSize) << "%)"<< '\n';
-  std::cout << "Le nombre de Renard: " << r << "(" << float(r)/(gridSize*gridSize) << "%)" <<'\n';
+  std::cout << "Le nombre de Lapin: " << l << "(" << float(l)*100/(gridSize*gridSize) << "%)"<< '\n';
+  std::cout << "Le nombre de Renard: " << r << "(" << float(r)*100/(gridSize*gridSize) << "%)" <<'\n';
 
   for(int i = 0; i < gridSize; i ++){
     for (int j = 0; j < gridSize; j++){

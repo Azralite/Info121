@@ -7,6 +7,7 @@ int MaxFood = 10;
 
 animal creerAnimal(espece e, coord c){
   animal res;
+  res.sexe = rand()%2;
   res.c = creerCoord(getX(c),getY(c));
   res.b = e;
   if(e == renard){
@@ -24,6 +25,10 @@ coord coordAnimal(animal a){
 
 espece especeAnimal(animal a){
   return a.b;
+}
+
+int sexeAnimal(animal a){
+  return a.sexe;
 }
 
 int nourritureRenard(animal a){
