@@ -46,7 +46,7 @@ int main(){
   MLV_clear_window (gris);
   while(nbLapin(g) > 0 && nbRenard(g) > 0){
     MLV_draw_image(imageSimulation(g), 20*rayon, 10*rayon);
-    //MLV_draw_image(graph(nbLapin(g), nbRenard(g)), 20*rayon, 20*rayon*2+10)
+
     foxWar.update();
     grilleVide(sauv);
     updateGrille(g, sauv);
