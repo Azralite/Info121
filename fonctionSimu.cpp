@@ -129,9 +129,10 @@ void deplaceTousLapins(grille g1, grille newG){
 		coord c = randomEC(coordLapin);
 		supprimeCoord(coordLapin, c);
 		EnsCoord caseVide = voisinsEspece(g1, c, vide);
-		if(tailleEC(caseVide) != 0){
+		animal a = getAnimal(g1,c);
+		//updateAgeAnimal(a);
+		if(tailleEC(caseVide) != 0 && !mortLapin(a)){
 			coord newCoord = randomEC(caseVide);
-			animal a = getAnimal(g1,c);
 			if(seReproduitAnimal(a, caseVide)){
 				animal newLapin = creerAnimal(especeAnimal(a), coordAnimal(a));
 				setAnimal(newG, newLapin);
@@ -139,8 +140,7 @@ void deplaceTousLapins(grille g1, grille newG){
 			changeCoordAnimal(newCoord, a);
 			setAnimal(newG, a);
 		}
-		else{
-			animal a = getAnimal(g1,c);
+		else if(!mortLapin(a)){
 			setAnimal(newG,a);
 		}
 	}
@@ -178,6 +178,7 @@ void deplaceTousRenards(grille g1, grille g2){
 		coord c = randomEC(coordRenard);
 		supprimeCoord(coordRenard, c);
 		animal r = getAnimal(g1, c);
+		//updateAgeAnimal(r);
 		faimRenard(r);
 		EnsCoord caseVide = voisinsEspece(g2, c, vide);
 

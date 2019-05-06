@@ -4,7 +4,7 @@ enum espece { vide, lapin, renard };
 
 
 //On prend 0 pour les Hommes et 1 pour les Femmes
-struct animal {coord c; espece b; int nour; int sexe;};
+struct animal {coord c; espece b; int nour; int sexe; int vie;};
 
 
 
@@ -62,3 +62,7 @@ void faimRenard(animal &a);
 * @return false sinon
 */
 bool mortRenard(animal a);
+
+bool mortLapin(animal a);
+
+void updateAgeAnimal(animal &a);

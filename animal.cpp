@@ -10,6 +10,7 @@ animal creerAnimal(espece e, coord c){
   res.sexe = rand()%2;
   res.c = creerCoord(getX(c),getY(c));
   res.b = e;
+  res.vie = 30;
   if(e == renard){
     res.nour = FoodInit;
   }
@@ -73,9 +74,19 @@ void faimRenard(animal &a){
 
 bool mortRenard(animal a){
   if( a.b == renard){
-    if(a.nour <=0){
+    if(a.nour <=0 || a.vie <= 0){
       return true;
     }
   }
   return false;
+}
+
+bool mortLapin(animal a){
+  if(a.b == lapin && a.vie <= 0)
+      return true;
+  return false;
+}
+
+void updateAgeAnimal(animal &a){
+  a.vie--;
 }
