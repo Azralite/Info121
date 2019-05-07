@@ -8,11 +8,13 @@
 #define blanc MLV_rgba(255,255,255,255)
 #define gris MLV_rgba(119,136,153, 255)
 #define noir MLV_rgba(0,0,0, 255)
-using namespace mlv;
 
-//int gridSize = 20;
 int rayon = 12;
 
+/**Desinne un cercle dans une image de la couleur indiqué
+ *@param[in] une couleur
+ *@return une image d'un rond
+ **/
 MLV_Image *drawCircle(MLV_Color couleur){
   MLV_Image *image = MLV_create_image(rayon*2,rayon*2);
   for(int x = 0; x < rayon*2; x++)
@@ -24,6 +26,10 @@ MLV_Image *drawCircle(MLV_Color couleur){
   return image;
 }
 
+/**Transforme un entier en chaîne de caractère
+ *@param[in] un entier
+ *@return une chaîne de caractère
+ **/
 std::string intToString(int x){
   int x1 = x;
   int i = 0;
@@ -42,7 +48,12 @@ std::string intToString(int x){
   return s;
 }
 
-
+/**Ecrit dans une image le nombre de lapin et de renard
+ *@param[out] l'image sur laquelle on dessine
+ *@param[in] un entier correspondant au nombre de lapin
+ *@param[in] un entier correspondant au nombre de renard
+ *@return une image
+ **/
 MLV_Image *nombreAnimal(MLV_Image *image, int nbLapin, int nbRenard){
   std::string l = "Nombre de lapin : " + intToString(nbLapin);
   std::string r = "Nombre de renard : " + intToString(nbRenard);
@@ -54,6 +65,10 @@ MLV_Image *nombreAnimal(MLV_Image *image, int nbLapin, int nbRenard){
   return image;
 }
 
+/**Dessine la simulation du modèle proie/predateur sur une image
+ *@param[in] une grille
+ *@return une image
+ **/
 MLV_Image *imageSimulation(grille t){
   MLV_Image *imageRenard = drawCircle(rouge);
   MLV_Image *imageLapin = drawCircle(cyan);

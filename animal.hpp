@@ -63,6 +63,12 @@ void faimRenard(animal &a);
 */
 bool mortRenard(animal a);
 
+/*@param[in] un animal
+*@return true si le lapin est mort false sinon
+*/
 bool mortLapin(animal a);
 
+/*@param[in/out] un animal
+* met à jour son age
+*/
 void updateAgeAnimal(animal &a);
