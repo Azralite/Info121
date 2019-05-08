@@ -60,11 +60,14 @@ void ajouteEC(EnsCoord &a, coord c);
 */
 coord randomEC(EnsCoord c);
 
-/*@param un ensemble de coordonnées
+/*@param [in]un ensemble de coordonnées
 * @return la taille de l'ensemble
 */
 int tailleEC(EnsCoord a);
 
+/*@param [in] un ensemble de coordonnée et un entier
+ *@return la a-ième coordonnée de l'ensemble
+*/
 coord coordEC(EnsCoord e, int a);
 
 /*@param[in/out] un ensemble de coordonées

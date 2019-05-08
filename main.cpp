@@ -100,9 +100,9 @@ int main(){
     foxWar.update();
     grilleVide(sauv);
     updateGrille(g, sauv);
-    afficheGrille(sauv,0,0);
+    //afficheGrille(sauv,0,0);
     copieGrille(g, sauv);
-    afficheGrille(g,nbLapin(g),nbRenard(g));
+    //afficheGrille(g,nbLapin(g),nbRenard(g));
     MLV_wait_milliseconds(250);
   }
 }

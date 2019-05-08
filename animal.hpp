@@ -41,7 +41,7 @@ int nourritureRenard(animal a);
 */
 bool estVide(animal a);
 
-/*@param une coordonnée
+/*@param [in] une coordonnée
 * @param [in/out] un animal
 */
 void changeCoordAnimal(coord c, animal &a);
