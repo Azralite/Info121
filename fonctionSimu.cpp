@@ -85,16 +85,6 @@ void initialiseGrille(grille g){
 	}
 }
 
-void verifieGrille(const grille &g){
-	for(int i = 0; i < gridSize; i++)
-		for(int n = 0; n < gridSize; n++)
-			if( not egalCoord( coordAnimal(g[i][n]), creerCoord(i,n) ) ){
-				std::cout << "Erreur dans la grille à la position " << i << ":" << n << std::endl;
-				exit(1);
-			}
-}
-
-
 /**revoir usage type abstrait EnsCoord**/
 EnsCoord voisinsEspece(const grille g, coord c, espece e){
 	EnsCoord EC = trouverVoisin(c);

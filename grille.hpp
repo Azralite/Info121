@@ -27,3 +27,8 @@ animal getAnimal(grille g, coord c);
  *@param[in] a l'animal à placer dans la grille
  **/
 void setAnimal(grille g,  animal a);
+
+/*@param[in] une grille g
+ *vérifie que chaque animal est bien placé et quitte le programme si ce n'est pas le cas
+ */
+bool verifieGrille(const grille &g);

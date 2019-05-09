@@ -26,3 +26,13 @@ void setAnimal(grille g, animal a){
 	int y = getY(coordAnimal(a));
 	g[x][y] = a;
 }
+
+
+bool verifieGrille(const grille &g){
+	for(int i = 0; i < gridSize; i++)
+		for(int n = 0; n < gridSize; n++)
+			if( not egalCoord( coordAnimal(g[i][n]), creerCoord(i,n) ) ){
+				return false;
+			}
+	return true;
+}

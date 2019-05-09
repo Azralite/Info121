@@ -19,11 +19,6 @@ bool seReproduitAnimal(animal a, EnsCoord c);
 void initialiseGrille( grille g);
 
 /*@param[in] une grille g
- *vérifie que chaque animal est bien placé et quitte le programme si ce n'est pas le cas
- */
-void verifieGrille(const grille &g);
-
-/*@param[in] une grille g
  *@param[in] la coordonnée de l'animal dont on cherche les voisins
  *@param[in] l'espece de l'animal voisin recherché
  *@return l'ensemble des coordonnées des cases voisines contenant l'expèce recherché
