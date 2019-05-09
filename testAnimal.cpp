@@ -5,16 +5,22 @@
 void testCoordAnimal(){
   animal a = creerAnimal(lapin, creerCoord(5,6));
   ASSERT(egalCoord(coordAnimal(a), creerCoord(5,6)));
+  animal b = creerAnimal(renard, creerCoord(10,9));
+  ASSERT(egalCoord(coordAnimal(b), creerCoord(10, 9)));
 }
 
 void testEspeceAnimal(){
   animal a = creerAnimal(lapin, creerCoord(5,6));
   ASSERT(especeAnimal(a) == lapin);
+  animal b = creerAnimal(lapin, creerCoord(4,9));
+  ASSERT(especeAnimal(b) == lapin);
 }
 
 void testSexeAnimal() {
   animal a = creerAnimal(lapin, creerCoord(5,6));
   ASSERT(sexeAnimal(a) == 0 || sexeAnimal(a) == 1);
+  animal b = creerAnimal(renard, creerCoord(2,3));
+  ASSERT(sexeAnimal(b) == 0 || sexeAnimal(b) == 1);
 }
 
 void testNourritureRenard() {
