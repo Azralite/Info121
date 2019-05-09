@@ -26,6 +26,9 @@ MLV_Image *drawCircle(MLV_Color couleur){
   return image;
 }
 
+MLV_Image *imageRenard = drawCircle(rouge);
+MLV_Image *imageLapin = drawCircle(cyan);
+
 /**Transforme un entier en chaîne de caractère
  *@param[in] un entier
  *@return une chaîne de caractère
@@ -54,25 +57,21 @@ std::string intToString(int x){
  *@param[in] un entier correspondant au nombre de renard
  *@return une image
  **/
-MLV_Image *nombreAnimal(MLV_Image *image, int nbLapin, int nbRenard){
+void nombreAnimal(MLV_Image *image, int nbLapin, int nbRenard){
   std::string l = "Nombre de lapin : " + intToString(nbLapin);
   std::string r = "Nombre de renard : " + intToString(nbRenard);
   const char* L = l.c_str();
   const char* R = r.c_str();
-   MLV_Font* font = MLV_load_font( "arial.ttf" , 20 );
+  MLV_Font* font = MLV_load_font( "arial.ttf" , 20 );
   MLV_draw_text_with_font_on_image(10, 10, L, font, noir, image);
   MLV_draw_text_with_font_on_image(10, 30, R, font, noir, image);
-  return image;
 }
 
 /**Dessine la simulation du modèle proie/predateur sur une image
  *@param[in] une grille
  *@return une image
  **/
-MLV_Image *imageSimulation(grille t){
-  MLV_Image *imageRenard = drawCircle(rouge);
-  MLV_Image *imageLapin = drawCircle(cyan);
-  MLV_Image *image = MLV_create_image (rayon*2*taille_tab, rayon*2*taille_tab + 80);
+void imageSimulation(grille t, MLV_Image *image){
   for(int i = 0; i < rayon*2*taille_tab; i++)
     for(int n = 0; n < rayon*2*taille_tab + 80; n++)
       MLV_set_pixel_on_image(i,n, blanc, image);
@@ -83,7 +82,6 @@ MLV_Image *imageSimulation(grille t){
         MLV_draw_image_on_image(imageLapin, image, i*rayon*2,80+ n*rayon*2);
       else if(especeAnimal(t[i][n]) == renard)
         MLV_draw_image_on_image(imageRenard, image, i*rayon*2, 80+n*rayon*2);
-  return image;
 }
 
 int main(){
@@ -92,10 +90,10 @@ int main(){
   initialiseGrille(g);
   mlv::window_t foxWar = mlv::window_t( "FoxWar", "essai", rayon*2*taille_tab, rayon*2*taille_tab + 80);
   MLV_clear_window (blanc);
-  MLV_Image *image;
+  MLV_Image *image = MLV_create_image (rayon*2*taille_tab, rayon*2*taille_tab + 80);
   while(nbLapin(g) > 0 && nbRenard(g) > 0){
-    image = imageSimulation(g);
-    image = nombreAnimal(image, nbLapin(g), nbRenard(g));
+    imageSimulation(g, image);
+    nombreAnimal(image, nbLapin(g), nbRenard(g));
     MLV_draw_image(image, 0, 0);
     foxWar.update();
     grilleVide(sauv);
@@ -103,6 +101,6 @@ int main(){
     //afficheGrille(sauv,0,0);
     copieGrille(g, sauv);
     afficheGrille(g,nbLapin(g),nbRenard(g));
-    MLV_wait_milliseconds(250);
+    //MLV_wait_milliseconds(250);
   }
 }
