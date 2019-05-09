@@ -12,7 +12,7 @@ int hasard(int val){
 		return rand()%val+1;
 }
 
-/**utiliser type abstrait**/
+
 bool seReproduitAnimal(animal a, EnsCoord c){
   float ran = hasard(99)/100.;
 	int taille = tailleEC(c);
@@ -38,6 +38,20 @@ bool seReproduitAnimal(animal a, EnsCoord c){
 }
 
 bool seReproduitAnimalSexe(animal a, EnsCoord c, grille g){
+	if (especeAnimal(a) == lapin) {
+		for (int i = 0; i < tailleEC(c); i++) {
+			int x = getX(coordEC(c,i));
+			int y = getY(coordEC(c,i));
+			animal test = getAnimal(g,creerCoord(x,y));
+			if (especeAnimal(test) == especeAnimal(a)) {
+				if(sexeAnimal(test) != sexeAnimal(a)){
+					std::cout << "sexe2" << '\n';
+					return (hasard(100)/100. <= 0.7);
+				}
+			}
+		}
+		return false;
+	}
 	if (especeAnimal(a) == renard) {
 		int nourriture = nourritureRenard(a);
 		if(nourriture >= FoodReprod){
@@ -47,21 +61,9 @@ bool seReproduitAnimalSexe(animal a, EnsCoord c, grille g){
 				animal test = getAnimal(g,creerCoord(x,y));
 				if (especeAnimal(test) == especeAnimal(a)) {
 					if(sexeAnimal(test) != sexeAnimal(a)){
-						return (hasard(99)/100. <= ProbBirthRenard);
+						std::cout << "sexe" << '\n';
+						return (hasard(100)/100. <= 0.15);
 					}
-				}
-			}
-		}
-		return false;
-	}
-	if (especeAnimal(a) == lapin) {
-		for (int i = 0; i < tailleEC(c); i++) {
-			int x = getX(coordEC(c,i));
-			int y = getY(coordEC(c,i));
-			animal test = getAnimal(g,creerCoord(x,y));
-			if (especeAnimal(test) == especeAnimal(a)) {
-				if(sexeAnimal(test) != sexeAnimal(a)){
-					return true;
 				}
 			}
 		}
@@ -118,11 +120,13 @@ void deplaceTousLapins(grille g1, grille newG){
 		coord c = randomEC(coordLapin);
 		supprimeCoord(coordLapin, c);
 		EnsCoord caseVide = voisinsEspece(g1, c, vide);
+		EnsCoord voisin = trouverVoisin(c);
 		animal a = getAnimal(g1,c);
 		//updateAgeAnimal(a);
 		if(tailleEC(caseVide) != 0 && !mortLapin(a)){
 			coord newCoord = randomEC(caseVide);
-			if(seReproduitAnimal(a, caseVide)){
+			if(seReproduitAnimalSexe(a,voisin,g1)){
+			// if(seReproduitAnimal(a, caseVide)){
 				animal newLapin = creerAnimal(especeAnimal(a), coordAnimal(a));
 				setAnimal(newG, newLapin);
 			}
@@ -173,14 +177,16 @@ void deplaceTousRenards(grille g1, grille g2){
 
 		if((!mortRenard(r)) && attaqueRenard(g2, r)){
 			setAnimal(g2, r);
-			if(seReproduitAnimal(r, caseVide)){
+			if(seReproduitAnimalSexe(r, caseVide,g1)){
+			// if(seReproduitAnimal(r, caseVide)){
 				animal oldR = getAnimal(g1, c);
 				faimRenard(oldR);
 				animal newRenard = creerAnimal(especeAnimal(oldR), coordAnimal(oldR));
 				setAnimal(g2, newRenard);
 			}
 		}else if(!mortRenard(r)){
-			if(seReproduitAnimal(r, caseVide)){
+			if(seReproduitAnimalSexe(r, caseVide,g1)){
+			// if(seReproduitAnimal(r, caseVide)){
 				animal newRenard = creerAnimal(especeAnimal(r), coordAnimal(r));
 				setAnimal(g2, newRenard);
 			}

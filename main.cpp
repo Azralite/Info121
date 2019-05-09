@@ -101,6 +101,6 @@ int main(){
     //afficheGrille(sauv,0,0);
     copieGrille(g, sauv);
     afficheGrille(g,nbLapin(g),nbRenard(g));
-    MLV_wait_milliseconds(250);
+    MLV_wait_milliseconds(100);
   }
 }
