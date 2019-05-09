@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <unistd.h>
-const int TAILLE = 20;
+const int TAILLE = 40;
 
 struct coord{
   int x;

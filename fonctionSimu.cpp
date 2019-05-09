@@ -1,6 +1,5 @@
 #include "fonctionSimu.hpp"
 
-// const int gridSize = 20
 //Variable global pour les renards
 
 int FoodReprod = 8;

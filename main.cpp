@@ -9,8 +9,8 @@
 #define gris MLV_rgba(119,136,153, 255)
 #define noir MLV_rgba(0,0,0, 255)
 
-int rayon = 12;
-
+int rayon = 9;
+int taille_tab = 40;
 /**Desinne un cercle dans une image de la couleur indiqué
  *@param[in] une couleur
  *@return une image d'un rond
@@ -72,13 +72,13 @@ MLV_Image *nombreAnimal(MLV_Image *image, int nbLapin, int nbRenard){
 MLV_Image *imageSimulation(grille t){
   MLV_Image *imageRenard = drawCircle(rouge);
   MLV_Image *imageLapin = drawCircle(cyan);
-  MLV_Image *image = MLV_create_image (rayon*2*20, rayon*2*20 + 80);
-  for(int i = 0; i < rayon*2*20; i++)
-    for(int n = 0; n < rayon*2*20 + 80; n++)
+  MLV_Image *image = MLV_create_image (rayon*2*taille_tab, rayon*2*taille_tab + 80);
+  for(int i = 0; i < rayon*2*taille_tab; i++)
+    for(int n = 0; n < rayon*2*taille_tab + 80; n++)
       MLV_set_pixel_on_image(i,n, blanc, image);
 
-  for(int i = 0; i < 20; i++)
-    for(int n = 0; n < 20; n++)
+  for(int i = 0; i < taille_tab; i++)
+    for(int n = 0; n < taille_tab; n++)
       if(especeAnimal(t[i][n]) == lapin)
         MLV_draw_image_on_image(imageLapin, image, i*rayon*2,80+ n*rayon*2);
       else if(especeAnimal(t[i][n]) == renard)
@@ -90,7 +90,7 @@ int main(){
   srand (time(NULL));
   grille g, sauv;
   initialiseGrille(g);
-  mlv::window_t foxWar = mlv::window_t( "FoxWar", "essai", rayon*2*20, rayon*2*20 + 80);
+  mlv::window_t foxWar = mlv::window_t( "FoxWar", "essai", rayon*2*taille_tab, rayon*2*taille_tab + 80);
   MLV_clear_window (blanc);
   MLV_Image *image;
   while(nbLapin(g) > 0 && nbRenard(g) > 0){
@@ -102,7 +102,7 @@ int main(){
     updateGrille(g, sauv);
     //afficheGrille(sauv,0,0);
     copieGrille(g, sauv);
-    //afficheGrille(g,nbLapin(g),nbRenard(g));
+    afficheGrille(g,nbLapin(g),nbRenard(g));
     MLV_wait_milliseconds(250);
   }
 }

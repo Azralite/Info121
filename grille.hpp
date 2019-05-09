@@ -1,6 +1,6 @@
 #include "animal.hpp"
 
-const int gridSize = 20;
+const int gridSize = 40;
 
 using grille = animal [gridSize][gridSize];
 
